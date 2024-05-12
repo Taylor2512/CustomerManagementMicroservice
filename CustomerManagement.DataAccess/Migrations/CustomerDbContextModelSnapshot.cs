@@ -205,10 +205,86 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 2L,
                             Activo = false,
+                            Ccodigo = "ESTCIV-SOLTERO",
+                            Desripcion = "Estado Civil - Soltero",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPadre = 1L,
+                            Nombre = "Soltero",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Activo = false,
+                            Ccodigo = "ESTCIV-CASADO",
+                            Desripcion = "Estado Civil - Casado",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPadre = 1L,
+                            Nombre = "Casado",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Activo = false,
                             Ccodigo = "TIPCLI",
                             Desripcion = "Lista de tipos de cliente",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Tipo de Cliente",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Activo = false,
+                            Ccodigo = "TIPCLI-INDIVIDUAL",
+                            Desripcion = "Cliente Individual",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPadre = 4L,
+                            Nombre = "Individual",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Activo = false,
+                            Ccodigo = "TIPCLI-CORPORATIVO",
+                            Desripcion = "Cliente Corporativo",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPadre = 4L,
+                            Nombre = "Corporativo",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Activo = false,
+                            Ccodigo = "TIPO-ID",
+                            Desripcion = "Lista de tipos de identificación",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Tipo de Identificación",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            Activo = false,
+                            Ccodigo = "TIPO-ID-CEDULA",
+                            Desripcion = "Número de identificación - Cédula",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPadre = 7L,
+                            Nombre = "Cédula",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            Activo = false,
+                            Ccodigo = "TIPO-ID-PASAPORTE",
+                            Desripcion = "Número de identificación - Pasaporte",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPadre = 7L,
+                            Nombre = "Pasaporte",
                             UsuarioCreacion = "ADMIN"
                         });
                 });

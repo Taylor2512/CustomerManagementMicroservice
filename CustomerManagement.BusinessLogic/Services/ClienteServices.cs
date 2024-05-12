@@ -25,6 +25,11 @@ namespace CustomerManagement.BusinessLogic.Services
 
         public async Task<ClienteDto> Create(ClienteRequest request)
         {
+            if(_clienteRepository.All.Any(e => e.NumeroIdentificacion.Equals(request.NumeroIdentificacion)))
+            {
+                throw new InvalidOperationException($"El número de identificación '{request.NumeroIdentificacion}' ya está en uso.");
+            }
+
             var cliente = _mapper.Map<Cliente>(request);
             _clienteRepository.Add(cliente);
             await _clienteRepository.SaveChangesAsync();
@@ -64,12 +69,17 @@ namespace CustomerManagement.BusinessLogic.Services
             var endiad= await _clienteRepository.FindAllAsync<ClienteDto>(_mapper, id);
             if (endiad != null)
                 return endiad;
-            throw new ArgumentException("Cliente no fue encontrado");
+            throw new InvalidOperationException("Cliente no fue encontrado");
         }
 
         public async Task<ClienteDto> Update(Guid id, ClienteRequest request)
         {
             var entidad= _clienteRepository.FindAll( id);
+
+            if (_clienteRepository.All.Any(e =>   id!= e.Id&& e.NumeroIdentificacion.Equals(request.NumeroIdentificacion)))
+            {
+                throw new InvalidOperationException($"El número de identificación '{request.NumeroIdentificacion}' ya está en uso.");
+            }
             if (entidad != null)
             {
                 var entidadUpdate = _mapper.MapTo<Cliente>(entidad, request);
@@ -78,7 +88,7 @@ namespace CustomerManagement.BusinessLogic.Services
             }
             else
             {
-                throw new ArgumentException($"El Cliente con identificación {id} no fue encontrado");
+                throw new InvalidOperationException($"El Cliente con identificación {id} no fue encontrado");
             }
 
         }

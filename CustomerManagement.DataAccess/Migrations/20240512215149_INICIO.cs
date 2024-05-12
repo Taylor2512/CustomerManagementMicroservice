@@ -4,10 +4,12 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace CustomerManagement.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicio : Migration
+    public partial class INICIO : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -86,6 +88,22 @@ namespace CustomerManagement.DataAccess.Migrations
                         principalTable: "Parametros",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Parametros",
+                columns: new[] { "Id", "CodigoParametro", "DescripcionParametro", "FechaActualizacion", "IdPadre", "NombreParametro", "UsuarioActualizacion", "UsuarioCreacion", "ValorParametro" },
+                values: new object[,]
+                {
+                    { 1L, "ESTCIV", "Lista de estados civiles", null, null, "Estado Civil", null, "ADMIN", null },
+                    { 4L, "TIPCLI", "Lista de tipos de cliente", null, null, "Tipo de Cliente", null, "ADMIN", null },
+                    { 7L, "TIPO-ID", "Lista de tipos de identificación", null, null, "Tipo de Identificación", null, "ADMIN", null },
+                    { 2L, "ESTCIV-SOLTERO", "Estado Civil - Soltero", null, 1L, "Soltero", null, "ADMIN", null },
+                    { 3L, "ESTCIV-CASADO", "Estado Civil - Casado", null, 1L, "Casado", null, "ADMIN", null },
+                    { 5L, "TIPCLI-INDIVIDUAL", "Cliente Individual", null, 4L, "Individual", null, "ADMIN", null },
+                    { 6L, "TIPCLI-CORPORATIVO", "Cliente Corporativo", null, 4L, "Corporativo", null, "ADMIN", null },
+                    { 8L, "TIPO-ID-CEDULA", "Número de identificación - Cédula", null, 7L, "Cédula", null, "ADMIN", null },
+                    { 9L, "TIPO-ID-PASAPORTE", "Número de identificación - Pasaporte", null, 7L, "Pasaporte", null, "ADMIN", null }
                 });
 
             migrationBuilder.CreateIndex(

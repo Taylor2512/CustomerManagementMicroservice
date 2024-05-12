@@ -1,108 +1,119 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using CustomerManagement.DataAccess.Context;
-using CustomerManagement.DataAccess.Models;
+﻿using CustomerManagement.DataAccess.Models;
 
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CustomerManagement.DataAccess.Seeder
+using System.Collections.Generic;
+
+internal static class ParametrosSeeder
 {
-    internal static class ParametrosSeeder
+    internal static void SeedData(this EntityTypeBuilder<Parametros> builder)
     {
-        internal static void SeedData(this EntityTypeBuilder<Parametros> builder, CustomerDbContext context)
+        // Define los datos de ejemplo para la entidad Parametros
+        List<Parametros> parametros = new List<Parametros>();
+
+        // Creamos un Parametros para "Estado Civil" con sus respectivos hijos
+        parametros.Add(new Parametros
         {
-            // Define los datos de ejemplo para la entidad Parametros
+            Id = 1,
+            Ccodigo = "ESTCIV",
+            Nombre = "Estado Civil",
+            Desripcion = "Lista de estados civiles",
+            Valor = null,
+            ParametroPadre = null,
+            UsuarioCreacion = "ADMIN"
+        });
 
-            // Lista de Parametros a insertar
-            List<Parametros> parametros = new List<Parametros>();
-
-            // Creamos un Parametros para "Estado Civil" con sus respectivos hijos
-            Parametros estadoCivil = new Parametros
-            {
-                Ccodigo = "ESTCIV",
-                Nombre = "Estado Civil",
-                Desripcion = "Lista de estados civiles",
-                Valor = null,
-                ParametroPadre = null,
-                UsuarioCreacion = "ADMIN"
-            };
-
-            // Añadimos los hijos del Parametros "Estado Civil"
-            estadoCivil.ParametrosHijo = new List<Parametros>
-            {
-                new Parametros
-                {
-                    Ccodigo = "ESTCIV-SOLTERO",
-                    Nombre = "Soltero",
-                    Desripcion = "Estado Civil - Soltero",
-                    Valor = null,
-                    ParametroPadre = estadoCivil,
-                    UsuarioCreacion = "ADMIN"
-                },
-                new Parametros
-                {
-                    Ccodigo = "ESTCIV-CASADO",
-                    Nombre = "Casado",
-                    Desripcion = "Estado Civil - Casado",
-                    Valor = null,
-                    ParametroPadre = estadoCivil,
-                    UsuarioCreacion = "ADMIN"
-                }
-            };
-
-            // Agregamos el Parametros "Estado Civil" y sus hijos a la lista
-            AddParametrosAndChildrenToList(estadoCivil, parametros);
-
-            // Creamos un Parametros para "Tipo de Cliente"
-            Parametros tipoCliente = new Parametros
-            {
-                Ccodigo = "TIPCLI",
-                Nombre = "Tipo de Cliente",
-                Desripcion = "Lista de tipos de cliente",
-                Valor = null,
-                ParametroPadre = null,
-                UsuarioCreacion = "ADMIN"
-            };
-
-            // Agregamos el Parametros "Tipo de Cliente" a la lista
-            parametros.Add(tipoCliente);
-
-            // Verificamos y eliminamos registros existentes con los mismos Ccodigo
-            foreach (var parametro in parametros)
-            {
-                RemoveExistingParametrosByCcodigo(context, parametro.Ccodigo);
-            }
-
-            // Insertamos los nuevos datos de ejemplo en la base de datos
-            builder.HasData(parametros);
-        }
-
-        private static void AddParametrosAndChildrenToList(Parametros parametro, List<Parametros> parametrosList)
+        parametros.Add(new Parametros
         {
-            if (parametro != null)
-            {
-                parametrosList.Add(parametro); // Agrega el Parametros actual a la lista
+            Id = 2,
+            Ccodigo = "ESTCIV-SOLTERO",
+            Nombre = "Soltero",
+            Desripcion = "Estado Civil - Soltero",
+            Valor = null,
+            IdPadre = 1, // Establecer el IdPadre con el Id del padre
+            UsuarioCreacion = "ADMIN"
+        });
 
-                // Recursivamente agrega todos los hijos del Parametros actual a la lista
-                if (parametro.ParametrosHijo != null && parametro.ParametrosHijo.Any())
-                {
-                    foreach (var childParametro in parametro.ParametrosHijo)
-                    {
-                        AddParametrosAndChildrenToList(childParametro, parametrosList);
-                    }
-                }
-            }
-        }
-
-        private static void RemoveExistingParametrosByCcodigo(CustomerDbContext context, string ccodigo)
+        parametros.Add(new Parametros
         {
-            // Busca todos los registros con el mismo Ccodigo y elimínalos
-            var existingParametros = context.Parametros.Where(p => p.Ccodigo == ccodigo).ToList();
-            foreach (var existingParametro in existingParametros)
-            {
-                context.Parametros.Remove(existingParametro);
-            }
-        }
+            Id = 3,
+            Ccodigo = "ESTCIV-CASADO",
+            Nombre = "Casado",
+            Desripcion = "Estado Civil - Casado",
+            Valor = null,
+            IdPadre = 1, // Establecer el IdPadre con el Id del padre
+            UsuarioCreacion = "ADMIN"
+        });
+
+        // Creamos un Parametros para "Tipo de Cliente"
+        parametros.Add(new Parametros
+        {
+            Id = 4,
+            Ccodigo = "TIPCLI",
+            Nombre = "Tipo de Cliente",
+            Desripcion = "Lista de tipos de cliente",
+            Valor = null,
+            ParametroPadre = null,
+            UsuarioCreacion = "ADMIN"
+        });
+
+        parametros.Add(new Parametros
+        {
+            Id = 5,
+            Ccodigo = "TIPCLI-INDIVIDUAL",
+            Nombre = "Individual",
+            Desripcion = "Cliente Individual",
+            Valor = null,
+            IdPadre = 4,
+            UsuarioCreacion = "ADMIN"
+        });
+
+        parametros.Add(new Parametros
+        {
+            Id = 6,
+            Ccodigo = "TIPCLI-CORPORATIVO",
+            Nombre = "Corporativo",
+            Desripcion = "Cliente Corporativo",
+            Valor = null,
+            IdPadre = 4,
+            UsuarioCreacion = "ADMIN"
+        });
+
+        // Creamos un Parametros para "Tipo de Identificación"
+        parametros.Add(new Parametros
+        {
+            Id = 7,
+            Ccodigo = "TIPO-ID",
+            Nombre = "Tipo de Identificación",
+            Desripcion = "Lista de tipos de identificación",
+            Valor = null,
+            ParametroPadre = null,
+            UsuarioCreacion = "ADMIN"
+        });
+
+        parametros.Add(new Parametros
+        {
+            Id = 8,
+            Ccodigo = "TIPO-ID-CEDULA",
+            Nombre = "Cédula",
+            Desripcion = "Número de identificación - Cédula",
+            Valor = null,
+            IdPadre = 7,
+            UsuarioCreacion = "ADMIN"
+        });
+
+        parametros.Add(new Parametros
+        {
+            Id = 9,
+            Ccodigo = "TIPO-ID-PASAPORTE",
+            Nombre = "Pasaporte",
+            Desripcion = "Número de identificación - Pasaporte",
+            Valor = null,
+            IdPadre = 7,
+            UsuarioCreacion = "ADMIN"
+        });
+
+        // Insertamos los datos de ejemplo en la base de datos
+        builder.HasData(parametros);
     }
 }

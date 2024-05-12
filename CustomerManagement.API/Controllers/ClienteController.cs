@@ -39,13 +39,13 @@ namespace CustomerManagement.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<ClienteDto>> Update(Guid id, ClienteRequest request)
         {
-            return await (_clienteServices.Update(id, request));
+            return await _clienteServices.Update(id, request);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(Guid id)
         {
             return await _clienteServices.Delete(id);
-         }
+        }
     }
 }

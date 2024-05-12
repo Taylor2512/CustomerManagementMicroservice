@@ -1,6 +1,5 @@
 ﻿using CustomerManagement.DataAccess.Models;
-using CustomerManagement.DataAccess.Seeder;
-
+ 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -65,7 +64,7 @@ namespace CustomerManagement.DataAccess.Configurations
             builder.Property(p => p.UsuarioActualizacion)
                 .IsRequired(false);
             builder.HasQueryFilter(p => p.Activo);
-            //builder.SeedData();
+            builder.SeedData();
 
         }
     }
