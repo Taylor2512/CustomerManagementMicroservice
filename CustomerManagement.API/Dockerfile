@@ -1,25 +1,29 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["CustomerManagement.API/CustomerManagement.API.csproj", "CustomerManagement.API/"]
-RUN dotnet restore "./CustomerManagement.API/CustomerManagement.API.csproj"
+
+# Instalar libicu-dev (si es necesario)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libicu-dev \
+ && rm -rf /var/lib/apt/lists/*
+
+# Copia los archivos del proyecto y restaura las dependencias
 COPY . .
-WORKDIR "/src/CustomerManagement.API"
-RUN dotnet build "./CustomerManagement.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet restore "CustomerManagement.API/CustomerManagement.API.csproj"
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./CustomerManagement.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Compila y publica la aplicaci�n en una sola etapa
+RUN dotnet publish "CustomerManagement.API/CustomerManagement.API.csproj" -c Release -o /app/publish
 
-FROM base AS final
+# Etapa final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+EXPOSE 7130
+# Copia los archivos publicados desde la etapa de construcci�n
+COPY --from=build /app/publish .
+
+# Configura las variables de entorno necesarias
+ENV ASPNETCORE_URLS=http://+:7130 \
+    ASPNETCORE_ENVIRONMENT=Production
+# Instala una versión específica del SDK de .NET
+
+# Configura el punto de entrada de la aplicaci�n
 ENTRYPOINT ["dotnet", "CustomerManagement.API.dll"]

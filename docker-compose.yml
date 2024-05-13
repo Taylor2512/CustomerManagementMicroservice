@@ -1,0 +1,38 @@
+version: '3.8'
+services:  
+  # database:
+  #   container_name: postgres-db
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=Kawasaki2512
+  #     - POSTGRES_DB=CustomerManagement
+  #   ports:
+  #     - '5432:5432'
+  #   volumes:
+  #     - ./data:/var/lib/postgresql/data
+  #   networks:
+  #     - my-network
+
+  customer-api:
+    container_name: customer-management
+    build:
+      context: .
+      dockerfile: CustomerManagement.API/Dockerfile
+    mem_limit: 500m
+    cpus: 0.5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    ports:
+      - '8080:7130'  # Cambiar el puerto local de 7130 a 8080
+    volumes:
+      - ./cert.pem:/etc/ssl/certs/cert.pem
+      - ./key.pem:/etc/ssl/private/key.pem
+    networks:
+      - my-network
+   
+
+networks:
+  my-network:
+    driver: bridge
