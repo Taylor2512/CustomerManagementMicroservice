@@ -35,7 +35,7 @@ namespace CustomerManagement.BusinessLogic.Models.Request
         [Required(ErrorMessage = "El género es obligatorio")]
         public long GeneroId { get; set; }
 
-         public   string? Nacionalidad { get; set; }
+        public string? Nacionalidad { get; set; }
 
     }
 }

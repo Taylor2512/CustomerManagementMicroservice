@@ -26,6 +26,7 @@ namespace CustomerManagement.Test
                 Apellido = "Doe",
                 Activo = true,
                 NumeroCuenta = "12345",
+                FechaCreacion = DateTime.Now,
                 UsuarioCreacion = "12345",
                 CorreoElectronico = "correoPrueba",
                 EstadoCivilId = 1,
@@ -65,8 +66,10 @@ namespace CustomerManagement.Test
                 EstadoCivilId = 1,
                 GeneroId = 1,
                 Activo = true,
+                FechaActualizacion = DateTime.Now,
                 NumeroIdentificacion = "0951535970",
-                ProfesionOcupacion = "pruebas"
+                ProfesionOcupacion = "pruebas",
+                UsuarioActualizacion = "Usuario de Cambio"
 
             };
 
@@ -149,7 +152,7 @@ namespace CustomerManagement.Test
             List<Cliente> result = clienteRepository.GetAll().ToList();
 
             // Assert
-            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(2, result.Count);
 
             // Clean up
             dbContext.Dispose();

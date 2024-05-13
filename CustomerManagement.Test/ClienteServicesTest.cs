@@ -15,8 +15,8 @@ namespace CustomerManagement.Test
     [TestClass]
     public class ClienteServicesTests
     {
-        private IMapper? mapper;
-        private Mock<IClienteRepository>? _clienteRepositoryMock;
+        private  IMapper mapper;
+        private Mock<IClienteRepository> _clienteRepositoryMock;
 
         [TestInitialize]
         public void Setup()
@@ -62,7 +62,7 @@ namespace CustomerManagement.Test
         public async Task Delete_ShouldDeleteExistingClienteAndReturnTrue()
         {
 
-            ClienteServices clienteServices = new(_clienteRepositoryMock.Object, mapper);
+            ClienteServices clienteServices = new(clienteRepository: _clienteRepositoryMock.Object, mapper);
             Guid existingClienteId = Guid.NewGuid();
 
 

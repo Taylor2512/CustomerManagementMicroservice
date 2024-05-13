@@ -11,7 +11,7 @@ namespace CustomerManagement.DataAccess.Models
         [Required(ErrorMessage = "El apellido es obligatorio")]
         public required string Apellido { get; set; }
 
-         public   string? NumeroCuenta { get; set; }
+        public string? NumeroCuenta { get; set; }
 
         public decimal Saldo { get; set; } = 0M;
 

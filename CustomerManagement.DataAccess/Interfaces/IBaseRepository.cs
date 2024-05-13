@@ -8,7 +8,6 @@ namespace CustomerManagement.DataAccess.Interfaces
     {
         IQueryable<T> All { get; }
 
-        void Dispose();
         T? FindAll(params object[] keyValues);
         IQueryable<T> GetAll();
         IQueryable<T> GetAllPaginate(int page = 1, int take = 5);

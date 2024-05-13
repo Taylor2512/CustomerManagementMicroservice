@@ -4,8 +4,7 @@ using CustomerManagement.DataAccess.Models;
 
 namespace CustomerManagement.DataAccess.Repository
 {
-    public class ClienteRepository : BaseRepository<Cliente>, IClienteRepository
+    public class ClienteRepository(CustomerDbContext context) : BaseRepository<Cliente>(context), IClienteRepository
     {
-        public ClienteRepository(CustomerDbContext context) : base(context) { }
     }
 }

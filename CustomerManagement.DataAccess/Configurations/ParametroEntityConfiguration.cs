@@ -1,4 +1,5 @@
 ﻿using CustomerManagement.DataAccess.Models;
+using CustomerManagement.DataAccess.Seeder;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

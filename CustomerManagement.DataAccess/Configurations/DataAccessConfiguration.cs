@@ -22,7 +22,6 @@ namespace CustomerManagement.DataAccess.Configurations
                 });
             });
 
-            //services.AddScoped(typeof(BaseRepository<>), typeof(IBaseRepository<>));
             services.AddScoped<IClienteRepository, ClienteRepository>();
 
             return services;

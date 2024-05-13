@@ -63,13 +63,11 @@ namespace CustomerManagement.BusinessLogic.Mappers
 
             return typeMapExpression;
         }
-        private static void IgnoreMembers(IMappingExpression expression)
-        {
-            expression.ForAllMembers(opts => opts.Condition((src, dest, srcMember, destMember, context) =>
-            {
-                return srcMember != null && ((srcMember is not int && srcMember is not decimal) || Convert.ToDecimal(srcMember) != 0);
-            }));
-        }
+        private static void IgnoreMembers(IMappingExpression expression) => expression.ForAllMembers(opts => opts.Condition((src, dest, srcMember, destMember, context) =>
+                                                                                                                                                              {
+                                                                                                                                                                  return srcMember != null && ((srcMember is not int && srcMember is not decimal) || Convert.ToDecimal(srcMember) != 0);
+                                                                                                                                                              }));
+
         public static TDestination MapTo<TDestination>(this IMapper mapper, object destination)
         {
             return MapTo<TDestination>(mapper, destination, sources: default);

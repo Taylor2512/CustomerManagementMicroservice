@@ -4,13 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CustomerManagement.DataAccess.Context
 {
-    public class CustomerDbContext : DbContext
+    public class CustomerDbContext(DbContextOptions<CustomerDbContext> options) : DbContext(options)
     {
-        public CustomerDbContext(DbContextOptions<CustomerDbContext> options) : base(options)
-        {
-        }
-
-         
         public DbSet<Parametros> Parametros { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
 

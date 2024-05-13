@@ -4,14 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CustomerManagement.Test
 {
-    public class TestDbContext : CustomerDbContext
+    public class TestDbContext(DbContextOptions<CustomerDbContext> options) : CustomerDbContext(options)
     {
-        public TestDbContext(DbContextOptions<CustomerDbContext> options)
-           : base(options)
-        {
-
-        }
-
     }
     public static class DbContextHelper
     {

@@ -8,14 +8,9 @@ using CustomerManagement.DataAccess.Models;
 
 namespace CustomerManagement.DataAccess.Repository
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class, IEntity
+    public class BaseRepository<T>(CustomerDbContext context) : IBaseRepository<T> where T : class, IEntity
     {
-        private readonly CustomerDbContext _context;
-        public BaseRepository(CustomerDbContext context)
-        {
-            _context = context;
-        }
-        public IQueryable<T> All => _context.Set<T>();
+        public IQueryable<T> All => context.Set<T>();
 
         public IQueryable<T> GetAll()
         {
@@ -23,32 +18,28 @@ namespace CustomerManagement.DataAccess.Repository
         }
         public T? FindAll(params object[] keyValues)
         {
-            return _context.Set<T>().Find(keyValues);
+            return context.Set<T>().Find(keyValues);
         }
 
         public IQueryable<T> GetAllPaginate(int page = 1, int take = 5)
         {
-            return _context.Set<T>().Skip((page - 1) * take).Take(take);
+            return context.Set<T>().Skip((page - 1) * take).Take(take);
         }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
+         
 
         public void Add(T entity)
         {
             if (entity is BaseEntity baseEntity)
             {
                 baseEntity.Activo = true;
-                baseEntity.UsuarioCreacion = baseEntity.UsuarioCreacion ?? "SIN USUARIO";
+                baseEntity.UsuarioCreacion ??= "SIN USUARIO";
             }
-            _context.Set<T>().Add(entity);
+            context.Set<T>().Add(entity);
         }
 
         public void Update(T entity)
         {
-            _context.Set<T>().Update(entity);
+            context.Set<T>().Update(entity);
         }
         public void Delete(T entity)
         {
@@ -62,13 +53,13 @@ namespace CustomerManagement.DataAccess.Repository
 
         public Task<IQueryable<TDo>> GetAllAsync<TDo>(IMapper mapper)
         {
-            IQueryable<TDo> entities = _context.Set<T>().ProjectTo<TDo>(mapper.ConfigurationProvider);
+            IQueryable<TDo> entities = context.Set<T>().ProjectTo<TDo>(mapper.ConfigurationProvider);
             return Task.FromResult(entities);
         }
 
         public async Task<TDto?> FindAllAsync<TDto>(IMapper mapper, params object[] keyValues)
         {
-            T? entity = await _context.Set<T>().FindAsync(keyValues);
+            T? entity = await context.Set<T>().FindAsync(keyValues);
             if (entity == null)
             {
                 return default;
@@ -82,7 +73,7 @@ namespace CustomerManagement.DataAccess.Repository
 
         public async Task<IQueryable<TDo>> GetAllPaginateAsync<TDo>(IMapper mapper, int page = 1, int take = 5)
         {
-            IQueryable<TDo> entities = _context.Set<T>()
+            IQueryable<TDo> entities = context.Set<T>()
                 .Skip((page - 1) * take)
                 .Take(take)
                 .ProjectTo<TDo>(mapper.ConfigurationProvider);
@@ -117,12 +108,12 @@ namespace CustomerManagement.DataAccess.Repository
 
         public void SaveChange()
         {
-            _context.SaveChanges();
+            context.SaveChanges();
         }
 
         public async Task SaveChangesAsync()
         {
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
     }
 }

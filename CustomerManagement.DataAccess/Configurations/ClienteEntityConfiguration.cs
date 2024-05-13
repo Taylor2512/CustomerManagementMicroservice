@@ -41,7 +41,7 @@ namespace CustomerManagement.DataAccess.Configurations
             builder.Property(c => c.NumeroIdentificacion)
                   .IsRequired()
                  .HasMaxLength(50)
-                
+
                 .HasColumnName("NumeroIdentificacionCliente");
 
             builder.Property(c => c.ProfesionOcupacion)

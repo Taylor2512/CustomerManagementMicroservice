@@ -8,44 +8,38 @@ namespace CustomerManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class ClienteController(IClienteServices clienteServices) : ControllerBase
     {
-        private readonly IClienteServices _clienteServices;
-
-        public ClienteController(IClienteServices clienteServices)
-        {
-            _clienteServices = clienteServices;
-        }
-
+ 
         [HttpGet]
         public async Task<ActionResult<List<ClienteDto>>> GetAll(int page = 1, int take = 5)
         {
-            return await _clienteServices.GetAll(page, take);
+            return await clienteServices.GetAll(page, take);
             // Code to get all clients
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ClienteDto>> GetById(Guid id)
         {
-            return await _clienteServices.GetById(id);
+            return await clienteServices.GetById(id);
         }
 
         [HttpPost]
         public async Task<ActionResult<ClienteDto>> Create(ClienteRequest request)
         {
-            return await _clienteServices.Create(request);
+            return await clienteServices.Create(request);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<ClienteDto>> Update(Guid id, ClienteRequest request)
         {
-            return await _clienteServices.Update(id, request);
+            return await clienteServices.Update(id, request);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(Guid id)
         {
-            return await _clienteServices.Delete(id);
+            return await clienteServices.Delete(id);
         }
     }
 }
