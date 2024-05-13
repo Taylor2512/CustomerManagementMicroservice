@@ -2,9 +2,9 @@
 
 namespace CustomerManagement.DataAccess.Models
 {
-    public class BaseEntity: IEntity
+    public class BaseEntity : IEntity
     {
-        public bool Activo { get; set; } 
+        public bool Activo { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime? FechaActualizacion { get; set; }
         public required string UsuarioCreacion { get; set; }

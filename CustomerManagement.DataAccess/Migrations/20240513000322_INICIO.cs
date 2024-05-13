@@ -49,7 +49,7 @@ namespace CustomerManagement.DataAccess.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     NombreCliente = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     ApellidoCliente = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    NumeroCuentaCliente = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    NumeroCuentaCliente = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     Saldo = table.Column<decimal>(type: "numeric", nullable: false),
                     FechaNacimientoCliente = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Direccion = table.Column<string>(type: "text", nullable: true),
@@ -58,9 +58,9 @@ namespace CustomerManagement.DataAccess.Migrations
                     EstadoCivilId = table.Column<long>(type: "bigint", nullable: false),
                     NumeroIdentificacionCliente = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     TipoClienteId = table.Column<long>(type: "bigint", nullable: false),
-                    ProfesionOcupacionCliente = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    ProfesionOcupacionCliente = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     GeneroId = table.Column<long>(type: "bigint", nullable: false),
-                    NacionalidadCliente = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    NacionalidadCliente = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     Activo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
                     FechaCreacion = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     FechaActualizacion = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -120,6 +120,12 @@ namespace CustomerManagement.DataAccess.Migrations
                 name: "IX_Cliente_Id",
                 table: "Cliente",
                 column: "Id",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cliente_NumeroIdentificacionCliente",
+                table: "Cliente",
+                column: "NumeroIdentificacionCliente",
                 unique: true);
 
             migrationBuilder.CreateIndex(

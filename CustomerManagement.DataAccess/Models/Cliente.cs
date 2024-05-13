@@ -11,8 +11,7 @@ namespace CustomerManagement.DataAccess.Models
         [Required(ErrorMessage = "El apellido es obligatorio")]
         public required string Apellido { get; set; }
 
-        [Required(ErrorMessage = "El número de cuenta es obligatorio")]
-        public required string NumeroCuenta { get; set; }
+         public   string? NumeroCuenta { get; set; }
 
         public decimal Saldo { get; set; } = 0M;
 
@@ -30,7 +29,7 @@ namespace CustomerManagement.DataAccess.Models
         public long EstadoCivilId { get; set; }
 
         [ForeignKey("EstadoCivilId")]
-        public required Parametros EstadoCivil { get; set; }
+        public Parametros? EstadoCivil { get; set; }
 
         [Required(ErrorMessage = "El número de identificación es obligatorio")]
         public required string NumeroIdentificacion { get; set; }
@@ -38,19 +37,15 @@ namespace CustomerManagement.DataAccess.Models
         [Required(ErrorMessage = "El tipo de cliente es obligatorio")]
         public long TipoClienteId { get; set; }
 
-        [ForeignKey("TipoClienteId")]
-        public required Parametros TipoCliente { get; set; }
+        public Parametros? TipoCliente { get; set; }
 
-        [Required(ErrorMessage = "La profesión u ocupación es obligatoria")]
-        public required string ProfesionOcupacion { get; set; }
+        public string? ProfesionOcupacion { get; set; }
 
         [Required(ErrorMessage = "El género es obligatorio")]
         public long GeneroId { get; set; }
 
-        [ForeignKey("GeneroId")]
-        public required Parametros Genero { get; set; }
+        public Parametros? Genero { get; set; }
 
-        [Required(ErrorMessage = "La nacionalidad es obligatoria")]
-        public required string Nacionalidad { get; set; }
+        public string? Nacionalidad { get; set; }
     }
 }

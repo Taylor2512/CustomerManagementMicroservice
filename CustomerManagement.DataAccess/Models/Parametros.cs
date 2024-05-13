@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CustomerManagement.DataAccess.Models
 {
-    public class Parametros 
+    public class Parametros
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Esta línea indica que el valor de Id se genera automáticamente

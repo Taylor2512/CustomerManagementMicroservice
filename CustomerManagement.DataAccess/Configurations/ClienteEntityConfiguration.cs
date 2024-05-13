@@ -25,8 +25,7 @@ namespace CustomerManagement.DataAccess.Configurations
                 .HasColumnName("ApellidoCliente");
 
             builder.Property(c => c.NumeroCuenta)
-                .IsRequired()
-                .HasMaxLength(20)
+                 .HasMaxLength(20)
                 .HasColumnName("NumeroCuentaCliente");
 
             builder.Property(c => c.FechaNacimiento)
@@ -38,39 +37,36 @@ namespace CustomerManagement.DataAccess.Configurations
                 .HasMaxLength(100)
                 .HasColumnName("CorreoElectronicoCliente");
 
+            builder.HasIndex(x => x.NumeroIdentificacion).IsUnique();
             builder.Property(c => c.NumeroIdentificacion)
-                .IsRequired()
-                .HasMaxLength(50)
+                  .IsRequired()
+                 .HasMaxLength(50)
+                
                 .HasColumnName("NumeroIdentificacionCliente");
 
             builder.Property(c => c.ProfesionOcupacion)
-                .IsRequired()
-                .HasMaxLength(100)
+                 .HasMaxLength(100)
                 .HasColumnName("ProfesionOcupacionCliente");
 
             builder.Property(c => c.Nacionalidad)
-                .IsRequired()
-                .HasMaxLength(50)
+                 .HasMaxLength(50)
                 .HasColumnName("NacionalidadCliente");
 
 
             builder.HasOne(c => c.EstadoCivil)
                 .WithMany()
                 .HasForeignKey(c => c.EstadoCivilId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(c => c.TipoCliente)
                 .WithMany()
                 .HasForeignKey(c => c.TipoClienteId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(c => c.Genero)
                 .WithMany()
                 .HasForeignKey(c => c.GeneroId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                 .OnDelete(DeleteBehavior.Restrict);
             builder.Property(c => c.Activo)
                 .IsRequired()
                 .HasDefaultValue(true);

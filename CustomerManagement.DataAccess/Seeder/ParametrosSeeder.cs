@@ -2,14 +2,12 @@
 
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using System.Collections.Generic;
-
 internal static class ParametrosSeeder
 {
     internal static void SeedData(this EntityTypeBuilder<Parametros> builder)
     {
         // Define los datos de ejemplo para la entidad Parametros
-        List<Parametros> parametros = new List<Parametros>();
+        List<Parametros> parametros = new();
 
         // Creamos un Parametros para "Estado Civil" con sus respectivos hijos
         parametros.Add(new Parametros

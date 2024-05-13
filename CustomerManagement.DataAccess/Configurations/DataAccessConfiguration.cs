@@ -1,12 +1,11 @@
 ﻿using CustomerManagement.DataAccess.Context;
 using CustomerManagement.DataAccess.Interfaces;
-using CustomerManagement.DataAccess.Models;
 using CustomerManagement.DataAccess.Repository;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
- 
+
 
 namespace CustomerManagement.DataAccess.Configurations
 {
@@ -16,7 +15,7 @@ namespace CustomerManagement.DataAccess.Configurations
         {
             services.AddDbContext<CustomerDbContext>(options =>
             {
-                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                string? connectionString = configuration.GetConnectionString("DefaultConnection");
                 options.UseNpgsql(connectionString, sql =>
                 {
                     sql.MigrationsAssembly(typeof(CustomerDbContext).Assembly.FullName);
@@ -24,7 +23,7 @@ namespace CustomerManagement.DataAccess.Configurations
             });
 
             //services.AddScoped(typeof(BaseRepository<>), typeof(IBaseRepository<>));
-            services.AddScoped< IClienteRepository, ClienteRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
 
             return services;
         }

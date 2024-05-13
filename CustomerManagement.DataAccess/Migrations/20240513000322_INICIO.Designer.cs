@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CustomerManagement.DataAccess.Migrations
 {
     [DbContext(typeof(CustomerDbContext))]
-    [Migration("20240512215149_INICIO")]
+    [Migration("20240513000322_INICIO")]
     partial class INICIO
     {
         /// <inheritdoc />
@@ -70,7 +70,6 @@ namespace CustomerManagement.DataAccess.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("Nacionalidad")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
                         .HasColumnName("NacionalidadCliente");
@@ -82,7 +81,6 @@ namespace CustomerManagement.DataAccess.Migrations
                         .HasColumnName("NombreCliente");
 
                     b.Property<string>("NumeroCuenta")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)")
                         .HasColumnName("NumeroCuentaCliente");
@@ -94,7 +92,6 @@ namespace CustomerManagement.DataAccess.Migrations
                         .HasColumnName("NumeroIdentificacionCliente");
 
                     b.Property<string>("ProfesionOcupacion")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("ProfesionOcupacionCliente");
@@ -123,6 +120,9 @@ namespace CustomerManagement.DataAccess.Migrations
                     b.HasIndex("GeneroId");
 
                     b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.HasIndex("NumeroIdentificacion")
                         .IsUnique();
 
                     b.HasIndex("TipoClienteId");

@@ -1,11 +1,5 @@
 ﻿using AutoMapper;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace CustomerManagement.BusinessLogic.Mappers
 {
     public static class MapperExtensions
@@ -25,7 +19,7 @@ namespace CustomerManagement.BusinessLogic.Mappers
             if (!sources.Any())
                 return destination;
 
-            foreach (var src in sources.Where(e => e != null).ToList())
+            foreach (object? src in sources.Where(e => e != null).ToList())
             {
 
                 destination = mapper.Map(src, destination);
@@ -40,7 +34,7 @@ namespace CustomerManagement.BusinessLogic.Mappers
           this IMappingExpression<TSource, TDestination> expression)
         {
             IgnoreMembers(expression);
-            var newExpresion = expression.ReverseMap();
+            IMappingExpression<TDestination, TSource> newExpresion = expression.ReverseMap();
             IgnoreMembers(newExpresion);
             return expression;
         }
@@ -48,13 +42,13 @@ namespace CustomerManagement.BusinessLogic.Mappers
     this IMappingExpression expression)
         {
             IgnoreMembers(expression);
-            var newExpression = expression.ReverseMap();
+            IMappingExpression newExpression = expression.ReverseMap();
             IgnoreMembers(newExpression);
             return expression;
         }
         public static IMappingExpression Includes(this IMappingExpression typeMapExpression, TypeMap typeMapConfiguration)
         {
-            foreach (var propertyMap in typeMapConfiguration.PropertyMaps)
+            foreach (PropertyMap? propertyMap in typeMapConfiguration.PropertyMaps)
             {
                 if (propertyMap.SourceMember != null)
                 {
@@ -73,19 +67,12 @@ namespace CustomerManagement.BusinessLogic.Mappers
         {
             expression.ForAllMembers(opts => opts.Condition((src, dest, srcMember, destMember, context) =>
             {
-                if (srcMember == null) return false;
-
-                if (srcMember is int || srcMember is decimal)
-                {
-                    return Convert.ToDecimal(srcMember) != 0;
-                }
-
-                return true;
+                return srcMember != null && ((srcMember is not int && srcMember is not decimal) || Convert.ToDecimal(srcMember) != 0);
             }));
         }
         public static TDestination MapTo<TDestination>(this IMapper mapper, object destination)
         {
-            return MapTo<TDestination>(mapper,destination, sources: default);
+            return MapTo<TDestination>(mapper, destination, sources: default);
         }
 
         public static TDestination MapTo<TDestination>(this IMapper mapper, object destination, params object[]? sources)
@@ -112,14 +99,7 @@ namespace CustomerManagement.BusinessLogic.Mappers
         {
             expression.ForAllMembers(opts => opts.Condition((src, dest, srcMember, destMember, context) =>
             {
-                if (srcMember == null) return false;
-
-                if (srcMember is int || srcMember is decimal)
-                {
-                    return Convert.ToDecimal(srcMember) != 0;
-                }
-
-                return true;
+                return srcMember != null && ((srcMember is not int && srcMember is not decimal) || Convert.ToDecimal(srcMember) != 0);
             }));
         }
     }

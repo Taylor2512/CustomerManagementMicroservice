@@ -20,7 +20,7 @@ namespace CustomerManagement.DataAccess.Interfaces
         void Delete(T entity);
 
         Task<IQueryable<TDo>> GetAllAsync<TDo>(IMapper mapper);
-        Task<TDto?> FindAllAsync<TDto>(IMapper mapper,params object[] keyValues);
+        Task<TDto?> FindAllAsync<TDto>(IMapper mapper, params object[] keyValues);
         Task<IQueryable<TDo>> GetAllPaginateAsync<TDo>(IMapper mapper, int page = 1, int take = 5);
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);

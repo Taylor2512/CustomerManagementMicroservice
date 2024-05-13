@@ -1,6 +1,4 @@
-﻿using CustomerManagement.DataAccess.Models;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 
 namespace CustomerManagement.BusinessLogic.Models.Request
@@ -37,8 +35,7 @@ namespace CustomerManagement.BusinessLogic.Models.Request
         [Required(ErrorMessage = "El género es obligatorio")]
         public long GeneroId { get; set; }
 
-        [Required(ErrorMessage = "La nacionalidad es obligatoria")]
-        public required string Nacionalidad { get; set; }
+         public   string? Nacionalidad { get; set; }
 
     }
 }

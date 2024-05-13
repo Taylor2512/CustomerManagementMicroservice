@@ -10,6 +10,7 @@ namespace CustomerManagement.DataAccess.Context
         {
         }
 
+         
         public DbSet<Parametros> Parametros { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
 

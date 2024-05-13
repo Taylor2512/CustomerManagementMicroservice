@@ -7,14 +7,14 @@ using CustomerManagement.DataAccess.Models;
 
 namespace CustomerManagement.BusinessLogic.Mappers
 {
-    internal class ClienteMap:Profile
+    public class ClienteMap : Profile
     {
         public ClienteMap()
-        { 
-            CreateMap<Cliente,ClienteRequest>().IgnoreIfEmpty();
+        {
+            CreateMap<Cliente, ClienteRequest>().IgnoreIfEmpty();
             CreateMap<Cliente, ClienteDto>().IgnoreIfEmpty();
             CreateMap<ClienteRequest, ClienteDto>().IgnoreIfEmpty();
-        
+
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using CustomerManagement.DataAccess.Models;
- 
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
