@@ -10,17 +10,15 @@ namespace CustomerManagement.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Parametros> builder)
         {
-            // Configuración para la entidad Parametros
-
-            // Configuración de la propiedad Id como long y auto-generada
-
-
-            // Configuración de propiedades específicas de Parametros
+ 
             builder.HasKey(x => x.Id).HasName("PK_PARAMETRO");
             builder.HasIndex(x => x.Id).IsUnique();
+            builder.Property(p => p.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("Id");
 
 
-            builder.Property(p => p.Ccodigo)
+            builder.Property(p => p.Codigo)
                 .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("CodigoParametro");

@@ -131,7 +131,8 @@ namespace CustomerManagement.DataAccess.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("Id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
@@ -140,7 +141,7 @@ namespace CustomerManagement.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(true);
 
-                    b.Property<string>("Ccodigo")
+                    b.Property<string>("Codigo")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
@@ -195,7 +196,7 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 1L,
                             Activo = false,
-                            Ccodigo = "ESTCIV",
+                            Codigo = "ESTCIV",
                             Desripcion = "Lista de estados civiles",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Estado Civil",
@@ -205,7 +206,7 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 2L,
                             Activo = false,
-                            Ccodigo = "ESTCIV-SOLTERO",
+                            Codigo = "ESTCIV-SOLTERO",
                             Desripcion = "Estado Civil - Soltero",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdPadre = 1L,
@@ -216,7 +217,7 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 3L,
                             Activo = false,
-                            Ccodigo = "ESTCIV-CASADO",
+                            Codigo = "ESTCIV-CASADO",
                             Desripcion = "Estado Civil - Casado",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdPadre = 1L,
@@ -227,7 +228,7 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 4L,
                             Activo = false,
-                            Ccodigo = "TIPCLI",
+                            Codigo = "TIPCLI",
                             Desripcion = "Lista de tipos de cliente",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Tipo de Cliente",
@@ -237,7 +238,7 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 5L,
                             Activo = false,
-                            Ccodigo = "TIPCLI-INDIVIDUAL",
+                            Codigo = "TIPCLI-INDIVIDUAL",
                             Desripcion = "Cliente Individual",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdPadre = 4L,
@@ -248,7 +249,7 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 6L,
                             Activo = false,
-                            Ccodigo = "TIPCLI-CORPORATIVO",
+                            Codigo = "TIPCLI-CORPORATIVO",
                             Desripcion = "Cliente Corporativo",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdPadre = 4L,
@@ -259,7 +260,7 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 7L,
                             Activo = false,
-                            Ccodigo = "TIPO-ID",
+                            Codigo = "TIPO-ID",
                             Desripcion = "Lista de tipos de identificación",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Tipo de Identificación",
@@ -269,7 +270,7 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 8L,
                             Activo = false,
-                            Ccodigo = "TIPO-ID-CEDULA",
+                            Codigo = "TIPO-ID-CEDULA",
                             Desripcion = "Número de identificación - Cédula",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdPadre = 7L,
@@ -280,11 +281,43 @@ namespace CustomerManagement.DataAccess.Migrations
                         {
                             Id = 9L,
                             Activo = false,
-                            Ccodigo = "TIPO-ID-PASAPORTE",
+                            Codigo = "TIPO-ID-PASAPORTE",
                             Desripcion = "Número de identificación - Pasaporte",
                             FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdPadre = 7L,
                             Nombre = "Pasaporte",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            Activo = false,
+                            Codigo = "PAR-GENERO",
+                            Desripcion = "Listado de genero",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Listado de genero",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            Activo = false,
+                            Codigo = "PAR-GENERO-FEMENINO",
+                            Desripcion = "genero Femenino",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPadre = 10L,
+                            Nombre = "Femenino",
+                            UsuarioCreacion = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            Activo = false,
+                            Codigo = "PAR-GENERO-MASCULINO",
+                            Desripcion = "genero Masculino",
+                            FechaCreacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPadre = 10L,
+                            Nombre = "Masculino",
                             UsuarioCreacion = "ADMIN"
                         });
                 });

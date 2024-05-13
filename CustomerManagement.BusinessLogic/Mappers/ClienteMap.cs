@@ -14,6 +14,9 @@ namespace CustomerManagement.BusinessLogic.Mappers
             CreateMap<Cliente, ClienteRequest>().IgnoreIfEmpty();
             CreateMap<Cliente, ClienteDto>().IgnoreIfEmpty();
             CreateMap<ClienteRequest, ClienteDto>().IgnoreIfEmpty();
+            CreateMap<Parametros, ParametroDto>().IgnoreIfEmpty();
+            CreateMap<Parametros, ParametroRequest>().IgnoreIfEmpty();
+            CreateMap<ParametroDto, ParametroRequest>().IgnoreIfEmpty();
 
         }
     }

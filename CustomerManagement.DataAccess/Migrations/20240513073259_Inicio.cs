@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CustomerManagement.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class INICIO : Migration
+    public partial class Inicio : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -98,12 +98,15 @@ namespace CustomerManagement.DataAccess.Migrations
                     { 1L, "ESTCIV", "Lista de estados civiles", null, null, "Estado Civil", null, "ADMIN", null },
                     { 4L, "TIPCLI", "Lista de tipos de cliente", null, null, "Tipo de Cliente", null, "ADMIN", null },
                     { 7L, "TIPO-ID", "Lista de tipos de identificación", null, null, "Tipo de Identificación", null, "ADMIN", null },
+                    { 10L, "PAR-GENERO", "Listado de genero", null, null, "Listado de genero", null, "ADMIN", null },
                     { 2L, "ESTCIV-SOLTERO", "Estado Civil - Soltero", null, 1L, "Soltero", null, "ADMIN", null },
                     { 3L, "ESTCIV-CASADO", "Estado Civil - Casado", null, 1L, "Casado", null, "ADMIN", null },
                     { 5L, "TIPCLI-INDIVIDUAL", "Cliente Individual", null, 4L, "Individual", null, "ADMIN", null },
                     { 6L, "TIPCLI-CORPORATIVO", "Cliente Corporativo", null, 4L, "Corporativo", null, "ADMIN", null },
                     { 8L, "TIPO-ID-CEDULA", "Número de identificación - Cédula", null, 7L, "Cédula", null, "ADMIN", null },
-                    { 9L, "TIPO-ID-PASAPORTE", "Número de identificación - Pasaporte", null, 7L, "Pasaporte", null, "ADMIN", null }
+                    { 9L, "TIPO-ID-PASAPORTE", "Número de identificación - Pasaporte", null, 7L, "Pasaporte", null, "ADMIN", null },
+                    { 11L, "PAR-GENERO-FEMENINO", "genero Femenino", null, 10L, "Femenino", null, "ADMIN", null },
+                    { 12L, "PAR-GENERO-MASCULINO", "genero Masculino", null, 10L, "Masculino", null, "ADMIN", null }
                 });
 
             migrationBuilder.CreateIndex(

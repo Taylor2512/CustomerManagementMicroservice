@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CustomerManagement.BusinessLogic.Models.Dto;
+
+using System.ComponentModel.DataAnnotations;
 
 
 namespace CustomerManagement.BusinessLogic.Models.Request
@@ -26,15 +28,17 @@ namespace CustomerManagement.BusinessLogic.Models.Request
         [EmailAddress(ErrorMessage = "Formato de correo electrónico no válido")]
         public required string CorreoElectronico { get; set; }
         public long EstadoCivilId { get; set; }
+        public ParametroDto? EstadoCivil { get; set; }
         public required string NumeroIdentificacion { get; set; }
         public long TipoClienteId { get; set; }
+        public ParametroDto? TipoCliente { get; set; }
 
         [Required(ErrorMessage = "La profesión u ocupación es obligatoria")]
         public required string ProfesionOcupacion { get; set; }
 
         [Required(ErrorMessage = "El género es obligatorio")]
         public long GeneroId { get; set; }
-
+        public ParametroDto? Genero { get; set; }
         public string? Nacionalidad { get; set; }
 
     }

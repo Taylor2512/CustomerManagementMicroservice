@@ -15,7 +15,7 @@ namespace CustomerManagement.DataAccess.Seeder
                 new Parametros
             {
                 Id = 1,
-                Ccodigo = "ESTCIV",
+                Codigo = "ESTCIV",
                 Nombre = "Estado Civil",
                 Desripcion = "Lista de estados civiles",
                 Valor = null,
@@ -25,7 +25,7 @@ namespace CustomerManagement.DataAccess.Seeder
             new Parametros
             {
                 Id = 2,
-                Ccodigo = "ESTCIV-SOLTERO",
+                Codigo = "ESTCIV-SOLTERO",
                 Nombre = "Soltero",
                 Desripcion = "Estado Civil - Soltero",
                 Valor = null,
@@ -35,7 +35,7 @@ namespace CustomerManagement.DataAccess.Seeder
             new Parametros
             {
                 Id = 3,
-                Ccodigo = "ESTCIV-CASADO",
+                Codigo = "ESTCIV-CASADO",
                 Nombre = "Casado",
                 Desripcion = "Estado Civil - Casado",
                 Valor = null,
@@ -46,7 +46,7 @@ namespace CustomerManagement.DataAccess.Seeder
             new Parametros
             {
                 Id = 4,
-                Ccodigo = "TIPCLI",
+                Codigo = "TIPCLI",
                 Nombre = "Tipo de Cliente",
                 Desripcion = "Lista de tipos de cliente",
                 Valor = null,
@@ -56,7 +56,7 @@ namespace CustomerManagement.DataAccess.Seeder
             new Parametros
             {
                 Id = 5,
-                Ccodigo = "TIPCLI-INDIVIDUAL",
+                Codigo = "TIPCLI-INDIVIDUAL",
                 Nombre = "Individual",
                 Desripcion = "Cliente Individual",
                 Valor = null,
@@ -66,7 +66,7 @@ namespace CustomerManagement.DataAccess.Seeder
             new Parametros
             {
                 Id = 6,
-                Ccodigo = "TIPCLI-CORPORATIVO",
+                Codigo = "TIPCLI-CORPORATIVO",
                 Nombre = "Corporativo",
                 Desripcion = "Cliente Corporativo",
                 Valor = null,
@@ -77,7 +77,7 @@ namespace CustomerManagement.DataAccess.Seeder
             new Parametros
             {
                 Id = 7,
-                Ccodigo = "TIPO-ID",
+                Codigo = "TIPO-ID",
                 Nombre = "Tipo de Identificación",
                 Desripcion = "Lista de tipos de identificación",
                 Valor = null,
@@ -87,24 +87,54 @@ namespace CustomerManagement.DataAccess.Seeder
             new Parametros
             {
                 Id = 8,
-                Ccodigo = "TIPO-ID-CEDULA",
+                Codigo = "TIPO-ID-CEDULA",
                 Nombre = "Cédula",
                 Desripcion = "Número de identificación - Cédula",
                 Valor = null,
                 IdPadre = 7,
                 UsuarioCreacion = "ADMIN"
             },
-            new Parametros
-            {
-                Id = 9,
-                Ccodigo = "TIPO-ID-PASAPORTE",
-                Nombre = "Pasaporte",
-                Desripcion = "Número de identificación - Pasaporte",
-                Valor = null,
-                IdPadre = 7,
-                UsuarioCreacion = "ADMIN"
-            },
-        ];
+                new Parametros
+                {
+                    Id = 9,
+                    Codigo = "TIPO-ID-PASAPORTE",
+                    Nombre = "Pasaporte",
+                    Desripcion = "Número de identificación - Pasaporte",
+                    Valor = null,
+                    IdPadre = 7,
+                    UsuarioCreacion = "ADMIN"
+                },
+                new Parametros
+                {
+                    Id = 10,
+                    Codigo = "PAR-GENERO",
+                    Nombre = "Listado de genero",
+                    Desripcion = "Listado de genero",
+                    Valor = null,
+                    IdPadre = null,
+                    UsuarioCreacion = "ADMIN"
+                },
+                new Parametros
+                {
+                    Id = 11,
+                    Codigo = "PAR-GENERO-FEMENINO",
+                    Nombre = "Femenino",
+                    Desripcion = "genero Femenino",
+                    Valor = null,
+                    IdPadre = 10,
+                    UsuarioCreacion = "ADMIN"
+                },
+                new Parametros
+                {
+                    Id = 12,
+                    Codigo = "PAR-GENERO-MASCULINO",
+                    Nombre = "Masculino",
+                    Desripcion = "genero Masculino",
+                    Valor = null,
+                    IdPadre = 10,
+                    UsuarioCreacion = "ADMIN"
+                },
+            ];
 
             // Insertamos los datos de ejemplo en la base de datos
             builder.HasData(parametros);
